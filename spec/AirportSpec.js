@@ -4,12 +4,18 @@ describe("Airport", function() {
 
   var airport;
   var plane;
+
   beforeEach(function() {
     airport = new Airport();
-    plane = new Plane();
+    plane = jasmine.createSpy('plane',['land']);
   });
 
-  it("instructs an plane at an airport", function() {
-    expect(airport.land(plane)).not.toBeUndefined()
+  it("it has no planes by default", function() {
+    expect(airport.planes()).toEqual([]);
   });
+  it('can clear planes for landing', function(){
+    airport.clearForLanding(plane);
+    expect(airport.planes()).toEqual([plane]);
+  });
+
 });
